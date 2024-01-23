@@ -34,7 +34,8 @@ export default class extends Module {
 			this.ote(msg) ||
 			this.ponkotu(msg) ||
 			this.rmrf(msg) ||
-			this.shutdown(msg)
+			this.shutdown(msg) ||
+			this.sexualharassment(msg) 
 		);
 	}
 
@@ -320,6 +321,18 @@ export default class extends Module {
 
 		return {
 			reaction: 'confused'
+		};
+	}
+
+	@bindThis
+	private sexualharassment(msg: Message): boolean | HandlerResult {
+		if (!msg.includes(['えっちしよ', 'えっちして'])) return false;
+
+		msg.friend.decLove();
+		msg.reply(serifs.core.sexualharassment);
+
+		return {
+			reaction: 'angry'
 		};
 	}
 }

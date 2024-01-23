@@ -163,7 +163,9 @@ export default {
 
 			hate2: '近づかないでください！'
 
-		}
+		},
+
+		sexualharassment: 'やめてください！'
 	},
 
 	keyword: {
