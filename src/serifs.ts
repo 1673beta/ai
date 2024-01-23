@@ -165,7 +165,7 @@ export default {
 
 		},
 
-		sexualharassment: 'やめてください！'
+		sexualharassment: ['やめてください！', 'やめてください。通報しますよ？', '近づかないでください'],
 	},
 
 	keyword: {
