@@ -349,7 +349,7 @@ export default class extends Module {
 		
 		if (msg.friend.love <= 0) {
 			msg.friend.decLove();
-		}
+		};
 
 		return true;
 	}
