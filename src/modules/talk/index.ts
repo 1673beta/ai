@@ -35,7 +35,8 @@ export default class extends Module {
 			this.ponkotu(msg) ||
 			this.rmrf(msg) ||
 			this.shutdown(msg) ||
-			this.sexualharassment(msg) 
+			this.sexualharassment(msg) ||
+			this.breathinginai(msg)
 		);
 	}
 
@@ -334,5 +335,22 @@ export default class extends Module {
 		return {
 			reaction: 'angry'
 		};
+	}
+
+	@bindThis
+	private breathinginai(msg: Message): boolean | HandlerResult {
+		if (!msg.includes(['吸う'])) return false;
+
+		msg.reply(
+			msg.friend.love >= 5 ? serifs.core.breathinginai.love :
+			msg.friend.love <= 0 ? serifs.core.breathinginai.hate :
+			serifs.core.breathinginai.normal
+		);
+		
+		if (msg.friend.love <= 0) {
+			msg.friend.decLove();
+		}
+
+		return true;
 	}
 }

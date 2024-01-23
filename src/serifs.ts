@@ -166,6 +166,14 @@ export default {
 		},
 
 		sexualharassment: 'やめてください！',
+
+		breathinginai: {
+			normal: '…なんですか？',
+
+			love: 'どうしたんですか？',
+
+			hate: '……'
+		}
 	},
 
 	keyword: {
