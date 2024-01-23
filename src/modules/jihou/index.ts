@@ -13,11 +13,11 @@ export default class extends Module {
 
 	@bindThis
 	private startjihou() {
-		setInterval(() => {
-			const now = new Date();
-			const minutes = now.getMinutes();
+	
+		const now = new Date();
+		const minutes = now.getMinutes();
 			
-			if (minutes === 0) {
+		if (minutes === 0) {
 				const hour = now.getHours();
 
 				switch (hour) {
@@ -79,6 +79,6 @@ export default class extends Module {
 				}
 			}
 
-		})
+		}
 	}
-}
+
