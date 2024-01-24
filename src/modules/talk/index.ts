@@ -327,7 +327,7 @@ export default class extends Module {
 
 	@bindThis
 	private sexualharassment(msg: Message): boolean | HandlerResult {
-		if (!msg.includes(['えっちしよ', 'えっちして', 'エッチ', '脱いで', '脱げ', '交尾'])) return false;
+		if (!msg.includes(['えっちしよ', 'えっちして', 'エッチ', '脱いで', '脱げ', '交尾', 'パンツの色'])) return false;
 
 		msg.friend.decLove();
 		msg.reply(serifs.core.sexualharassment);
