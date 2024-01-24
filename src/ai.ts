@@ -344,8 +344,7 @@ export default class 藍 {
 	 */
 	@bindThis
 	public async upload(file: Buffer | fs.ReadStream, meta: any) {
-		const res = await got.post({
-			url: `${config.apiUrl}/drive/files/create`,
+		const res = await got.post(`${config.apiUrl}/drive/files/create`, {
 			json: {
 				i: config.i,
 				file: {
