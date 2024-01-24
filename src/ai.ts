@@ -6,7 +6,8 @@ import loki from 'lokijs';
 import got from 'got';
 import chalk from 'chalk';
 import { v4 as uuid } from 'uuid';
-
+import { FormData } from 'formdata-node';
+import { FormDataEncoder } from 'form-data-encoder';
 import config from '@/config.js';
 import Module from '@/module.js';
 import Message from '@/message.js';
@@ -343,17 +344,16 @@ export default class 藍 {
 	 * ファイルをドライブにアップロードします
 	 */
 	@bindThis
-	public async upload(file: Buffer | fs.ReadStream, meta: any) {
-		const res = await got.post({
-			url: `${config.apiUrl}/drive/files/create`,
-			json: {
-				i: config.i,
-				file: {
-					value: file,
-					options: meta
-				}
-			},
-		}).json();
+	public async upload(file: Buffer | meta: any) {
+		let formData = new FormData();
+		formData.set('i', config.i);
+		formData.set('file', new Blob([file]), meta); 
+
+		const res = await (await fetch(`${config.apiUrl}/drive/files/create`, {
+			method: 'POST',
+			body: formData,
+		})).json();
+
 		return res;
 	}
 
