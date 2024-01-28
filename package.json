@@ -13,6 +13,7 @@
 		"@types/lokijs": "1.5.14",
 		"@types/promise-retry": "1.1.6",
 		"@types/random-seed": "0.3.5",
+		"@types/request-promise-native": "1.0.21",
 		"@types/seedrandom": "3.0.8",
 		"@types/twemoji-parser": "13.1.4",
 		"@types/uuid": "9.0.7",
