@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import { bindThis } from '@/decorators.js';
 import loki from 'lokijs';
 import got from 'got';
+import request from 'request-promise-native';
 import chalk from 'chalk';
 import { v4 as uuid } from 'uuid';
 
@@ -344,14 +345,14 @@ export default class 藍 {
 	 */
 	@bindThis
 	public async upload(file: Buffer | fs.ReadStream, meta: any) {
-		const res = await got.post(`${config.apiUrl}/drive/files/create`, {
+		const res = await request.post(`${config.apiUrl}/drive/files/create`, {
 			json: {
 				i: config.i,
 				file: {
 					value: file,
 					options: meta
 				}
-			},
+			}
 		}).json();
 		return res;
 	}
