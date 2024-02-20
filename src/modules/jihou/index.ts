@@ -16,68 +16,36 @@ export default class extends Module {
 	
 		const now = new Date();
 		const minutes = now.getMinutes();
-			
-		if (minutes === 0) {
-				const hour = now.getHours();
+		const hour = now.getHours();
+		
+		if (minutes === 0 && (hour === 5 || hour === 9 || hour === 12 || hour === 15 || hour === 20 || hour === 23)) {
+			let message;
 
-				switch (hour) {
-					default:
-						this.ai.post ({
-							text: `${hour}時です！`
-						});
+			switch (hour) {
+				case 5:
+					message: 'ふあぁ……おはようございます、こんな時間まで起きていたんですか？早起きならいいんですが……';
+					break;
+				case 9:
+					message: 'おはようございます！今日も一日がんばりましょう♪';
+					break;
+				case 12:
+					message: 'お昼の時間です！';
+					break;
+				case 15:
+					message: 'おやつの時間です♪ええと、今日のおやつは……';
+					break;
+				case 20:
+					message: '今日も一日お疲れ様でした！お風呂に入って、ご飯を食べてゆっくりしてくださいね♪';
+					break;
+				case 23:
+					message: 'ふわぁ…… 眠くなってきました、そろそろ寝ますね。おやすみなさい！';
+					break;
+			} 
 
-						break;
-
-					case 7:
-						this.ai.post ({
-							text: `${hour}時です！おはようございます♪`
-						})
-
-						break;
-
-					case 12:
-						this.ai.post ({
-							text: `${hour}時です！お昼の時間です！何を食べましょう？`
-						})
-
-						break;
-
-					case 20:
-						this.ai.post ({
-							text: `${hour}時です！お疲れさまでした♪`
-						})
-
-						break;
-
-					case 23:
-						this.ai.post ({
-							text: `${hour}時です！ふわぁ……`
-						})
-
-						break;
-
-					case 1:
-						this.ai.post ({
-							text: `${hour}時です！そろそろお休みになられたらどうでしょう？`
-						})
-
-						break;
-
-					case 3:
-						this.ai.post ({
-							text: `${hour}時です！まだ起きてるんですか？`
-						})
-
-						break;
-
-					case 4:
-						this.ai.post ({
-							text: `${hour}時です！夜更かしした分明日はちゃんと寝ましょうね？`
-						})
-
-						break;
-				}
-			}
+			this.ai.post ({
+				text: message
+			});
+		}
 
 		}
 	}
