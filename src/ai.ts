@@ -6,12 +6,13 @@ import loki from 'lokijs';
 import got from 'got';
 import chalk from 'chalk';
 import { v4 as uuid } from 'uuid';
+import { File, FormData } from 'formdata-node';
 
 import config from '@/config.js';
 import Module from '@/module.js';
 import Message from '@/message.js';
 import Friend, { FriendDoc } from '@/friend.js';
-import { User } from '@/misskey/user.js';
+import type { User } from '@/misskey/user.js';
 import Stream from '@/stream.js';
 import log from '@/utils/log.js';
 import { sleep } from './utils/sleep.js';
