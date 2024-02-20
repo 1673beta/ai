@@ -343,16 +343,19 @@ export default class 藍 {
 	 * ファイルをドライブにアップロードします
 	 */
 	@bindThis
-	public async upload(file: Buffer | fs.ReadStream, meta: any) {
-		const res = await got.post(`${config.apiUrl}/drive/files/create`, {
-			json: {
-				i: config.i,
-				file: {
-					value: file,
-					options: meta
-				}
-			},
+	public async upload(file: Buffer | fs.ReadStream, meta: {
+		filename: string,
+		contentType: string
+	}) {
+		const form = new FormData();
+		form.set('i', config.i);
+		form.set('file', new File([file], meta.filename, { type: meta.contentType}));
+
+		const res = await got.post({
+			url: `${config.apiUrl}/drive/files/create`,
+			body: form,
 		}).json();
+
 		return res;
 	}
 
