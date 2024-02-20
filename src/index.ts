@@ -1,6 +1,6 @@
 // @ts-nocheck
 // AiOS bootstrapper
-
+import process from 'node:process';
 import chalk from 'chalk';
 import got from 'got';
 import promiseRetry from 'promise-retry';
@@ -47,6 +47,13 @@ function log(msg: string): void {
 }
 
 log(chalk.bold(`Ai v${pkg._v}`));
+
+process.on('uncaughtException', err =>  {
+	try {
+		console.error(`Uncaught exception: ${err.message}`);
+		console.dir(err, { colors: true, depth: 2 })
+	} catch { }
+});
 
 promiseRetry(retry => {
 	log(`Account fetching... ${chalk.gray(config.host)}`);
