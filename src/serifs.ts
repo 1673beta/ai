@@ -173,6 +173,26 @@ export default {
 			love: 'どうしたんですか？',
 
 			hate: '……'
+		},
+
+		tsukareta: {
+			normal: '',
+
+			love1: '',
+
+			love2: '',
+
+			hate1: '',
+		},
+
+		nadete: {
+			normal: '',
+
+			love1: '',
+
+			love2: '',
+
+			hate1: '',	
 		}
 	},
 

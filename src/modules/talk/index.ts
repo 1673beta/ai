@@ -36,7 +36,9 @@ export default class extends Module {
 			this.rmrf(msg) ||
 			this.shutdown(msg) ||
 			this.sexualharassment(msg) ||
-			this.breathinginai(msg)
+			this.breathinginai(msg) ||
+			this.tsukareta(msg) ||
+			this.nadete(msg)
 		);
 	}
 
@@ -350,6 +352,63 @@ export default class extends Module {
 		if (msg.friend.love <= 0) {
 			msg.friend.decLove();
 		};
+
+		return true;
+	}
+
+	@bindThis
+	private tsukareta(msg: Message): boolean | HandlerResult {
+		if(!msg.includes(['疲れた', 'つかれた'])) return false;
+
+		/**1日1回だけ好感度を上げる */
+		if (msg.friend.love >= 0) {
+			const today = getDate();
+
+			const data = msg.friend.getPerModulesData(this);
+
+			if (data.lastNadenadeAt != today) {
+				data.lastNadenadeAt = today;
+				msg.friend.setPerModulesData(this, data);
+
+				msg.friend.incLove();
+			}
+		}
+
+
+		msg.reply(
+			msg.friend.love >= 5 ? serifs.core.tsukareta.love2 :
+			msg.friend.love >= 3 ? serifs.core.tsukareta.love1 :
+			msg.friend.love < 0 ? serifs.core.tsukareta.hate1 :
+			serifs.core.tsukareta.normal
+		);
+
+		return true;
+	}
+
+	@bindThis
+	private nadete(msg: Message): boolean | HandlerResult {
+		if(!msg.includes(['なでて', '撫でて'])) return false;
+
+		/**1日1回だけ好感度を上げる */
+		if (msg.friend.love >= 0) {
+			const today = getDate();
+
+			const data = msg.friend.getPerModulesData(this);
+
+			if (data.lastNadenadeAt != today) {
+				data.lastNadenadeAt = today;
+				msg.friend.setPerModulesData(this, data);
+
+				msg.friend.incLove();
+			}
+		}
+
+		msg.reply(
+			msg.friend.love >= 5 ? serifs.core.nadete.love2 :
+			msg.friend.love >= 3 ? serifs.core.nadete.love1 :
+			msg.friend.love < 0 ? serifs.core.nadete.hate1 :
+			serifs.core.nadete.normal
+		)
 
 		return true;
 	}
