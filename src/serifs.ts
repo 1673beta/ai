@@ -176,23 +176,23 @@ export default {
 		},
 
 		tsukareta: {
-			normal: '',
+			normal: 'ゆっくりお風呂に入ってくださいね♪',
 
-			love1: '',
+			love1: '耳かきしてあげましょうか？',
 
-			love2: '',
+			love2: 'いっぱい甘えていいですよ～',
 
-			hate1: '',
+			hate1: '…',
 		},
 
 		nadete: {
-			normal: '',
+			normal: '大丈夫ですか？',
 
-			love1: '',
+			love1: 'よしよし♪',
 
-			love2: '',
+			love2: '大丈夫ですよ、ここにいますよ♪',
 
-			hate1: '',	
+			hate1: '…',	
 		}
 	},
 
